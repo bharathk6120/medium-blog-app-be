@@ -10,7 +10,7 @@ const { ErrorHandler } = require('./common/middlewares/error-handler.middleware'
 const { Logger } = require('./common/logger/logger');
 const sequalize = require('./common/models/db.connection');
 
-const authController = require('./auth/auth.controller');
+const authController = require('./modules/auth/auth.controller');
 
 /**
  *
@@ -38,7 +38,7 @@ async function main() {
   app.use(ReqCtx);
   app.use(LoggerMiddleware);
 
-  app.get('/', authController.signIn);
+  app.get('/test', authController.signIn);
   app.use(ErrorHandler); // should be registered last
 
   app.listen(NODE_PORT, () => {

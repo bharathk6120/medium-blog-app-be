@@ -4,7 +4,7 @@ const { combine, timestamp, printf, colorize } = winston.format;
 const { isObject } = require('../utils/common');
 
 const winstonLogger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
+  level: 'debug',
   format: combine(
     colorize({ all: true }),
     timestamp({
@@ -77,7 +77,7 @@ class Logger {
    * @param {string} msg
    */
   debug(msg) {
-    winstonLogger.error(this.formatLog(msg));
+    winstonLogger.debug(this.formatLog(msg));
   }
 }
 

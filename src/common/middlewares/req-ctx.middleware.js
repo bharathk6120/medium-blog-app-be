@@ -10,8 +10,8 @@ const { Logger } = require('../logger/logger');
  */
 const ReqCtx = (req, res, next) => {
   const requestId = crypto.randomUUID();
-  const routeKey = `${req.method} ${req.path} | ${requestId}`;
-  const logger = new Logger(routeKey);
+  const routeKey = `${req.method} ${req.path}`;
+  const logger = new Logger(`${routeKey} | ${requestId}`);
 
   const ctx = {
     requestId: requestId,
