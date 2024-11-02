@@ -1,4 +1,4 @@
-const testRepository = require('./test.repository');
+const testRepository = require('./test');
 
 module.exports = {
   testRepository,

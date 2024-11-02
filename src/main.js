@@ -4,11 +4,11 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const { ReqCtx } = require('./common/middlewares/req-ctx.middleware');
-const { LoggerMiddleware } = require('./common/middlewares/logger.middleware');
-const { ErrorHandler } = require('./common/middlewares/error-handler.middleware');
+const { ReqCtx } = require('./common/middlewares/req-ctx');
+const { LoggerMiddleware } = require('./common/middlewares/logger');
+const { ErrorHandler } = require('./common/middlewares/error-handler');
 const { Logger } = require('./common/logger/logger');
-const sequalize = require('./common/models/db.connection');
+const sequalize = require('./config/db');
 
 const authController = require('./modules/auth/auth.controller');
 
