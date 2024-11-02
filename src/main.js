@@ -38,7 +38,8 @@ async function main() {
   app.use(ReqCtx);
   app.use(LoggerMiddleware);
 
-  app.get('/test', authController.signIn);
+
+  app.use(authController);
   app.use(ErrorHandler); // should be registered last
 
   app.listen(NODE_PORT, () => {
