@@ -1,4 +1,4 @@
-const Test = require('../common/models/test');
+const { Test } = require('../common/models');
 
 const getData = () => {
   return Test.findOne({});

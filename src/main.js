@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const app = express();
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -9,7 +8,7 @@ const { ReqCtx } = require('./common/middlewares/req-ctx.middleware');
 const { LoggerMiddleware } = require('./common/middlewares/logger.middleware');
 const { ErrorHandler } = require('./common/middlewares/error-handler.middleware');
 const { Logger } = require('./common/logger/logger');
-const sequalize = require('./common/models');
+const sequalize = require('./common/models/db.connection');
 
 const authController = require('./auth/auth.controller');
 
@@ -17,6 +16,7 @@ const authController = require('./auth/auth.controller');
  *
  */
 async function main() {
+  const app = express();
   const logger = new Logger('main');
   const NODE_PORT = process.env.NODE_PORT;
 
