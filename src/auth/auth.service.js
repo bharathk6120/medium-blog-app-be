@@ -7,7 +7,9 @@ const signIn = async () => {
     throw new HttpException(400, 'No data found.');
   }
 
-  return { data: [] };
+  return {
+    data: data,
+  };
 };
 
 module.exports = {

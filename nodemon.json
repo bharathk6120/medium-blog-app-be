@@ -1,5 +1,5 @@
 {
-  "events":{
-    "start": "clear"
-  }
+  "watch": ["src"],
+  "ext": "js,json",
+  "exec": "cls && node src/main.js"
 }
