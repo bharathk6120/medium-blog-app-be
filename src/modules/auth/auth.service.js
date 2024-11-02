@@ -1,5 +1,5 @@
-const { testRepository } = require('../repositories');
-const { HttpException } = require('../common/utils/http-exception');
+const { testRepository } = require('../../repositories');
+const { HttpException } = require('../../common/utils/http-exception');
 
 const signIn = async () => {
   const data = await testRepository.getData();
