@@ -1,0 +1,41 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": "google",
+  "parserOptions": {
+      "ecmaVersion": "latest"
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "space-infix-ops": ["error", { "int32Hint": false }],
+    "indent": "off",
+    "indent-legacy": ["error", 2, { "SwitchCase": 1 }],
+    "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+    "arrow-parens": [2, "as-needed"],
+    "prefer-arrow-callback": [ "error", { "allowNamedFunctions": false, "allowUnboundThis": true } ],
+    "switch-colon-spacing": ["error", {"after": true, "before": false}],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-debugger": "error",
+    "no-console": "error",
+    "no-empty": "warn",
+    "no-cond-assign": ["error", "always"],
+    "max-len": ["error", { "code": 150, "ignoreStrings": true }],
+    "object-curly-spacing": ["error", "always"],
+    "require-jsdoc": ["error"],
+    "new-cap": "off"
+  },
+  "ignorePatterns": ["submodule/", "poc/"],
+  "overrides": [
+    {
+      "files": ["**/**/service/*", "**/**/environConfig.js"],
+      "rules": {
+        "camelcase": "off"
+      }
+    }
+  ]
+}
