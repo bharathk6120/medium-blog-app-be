@@ -8,7 +8,7 @@ const { ReqCtx } = require('./common/middlewares/req-ctx');
 const { LoggerMiddleware } = require('./common/middlewares/logger');
 const { ErrorHandler } = require('./common/middlewares/error-handler');
 const { Logger } = require('./common/logger/logger');
-const sequalize = require('./config/db');
+const sequalize = require('./models/db.connection');
 
 const authController = require('./modules/auth/auth.controller');
 
