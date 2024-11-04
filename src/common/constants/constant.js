@@ -6,4 +6,8 @@ module.exports = {
     EMAIL_PASSWORD: 'email_password',
     GOOGLE: 'google',
   },
+  TOKEN_TYPE: {
+    VERIFY_EMAIL: 'verify_email',
+    RESET_PASSWORD: 'reset_password',
+  },
 };

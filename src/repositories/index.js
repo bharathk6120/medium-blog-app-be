@@ -1,5 +1,10 @@
 const userRepository = require('./user');
-module.exports = {
+const userTokenRepository = require('./userToken');
+const userProfileRepository = require('./userProfile');
 
+
+module.exports = {
   userRepository,
+  userTokenRepository,
+  userProfileRepository,
 };

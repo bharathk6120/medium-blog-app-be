@@ -1,7 +1,7 @@
-const { user } = require('@models');
+const { userProfile } = require('@models');
 
 const getData = (condition, attributes) => {
-  return user.findOne({
+  return userProfile.findOne({
     where: condition,
     attributes: attributes,
     raw: true,
@@ -9,25 +9,25 @@ const getData = (condition, attributes) => {
 };
 
 const createdData = data => {
-  return user.create(data);
+  return userProfile.create(data);
 };
 
 const updatedData = (data, condition) => {
-  return user.update(data, {
+  return userProfile.update(data, {
     where: condition,
   });
 };
 
 const createOrUpdateData = async (data, condition) => {
-  const userData = await getData(condition, ['user_id']);
+  const userProfileData = await getData(condition, ['user_id']);
 
-  if (userData) {
-    return user.update(data, {
+  if (userProfileData) {
+    return userProfile.update(data, {
       where: condition,
     });
   }
 
-  return user.create({ ...data, ...condition });
+  return userProfile.create({ ...data, ...condition });
 };
 
 module.exports = {

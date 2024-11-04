@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./db.connection');
 
-const user = sequelize.define('users',
+const user = sequelize.define('user_tokens',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -9,13 +9,9 @@ const user = sequelize.define('users',
       autoIncrement: true,
     },
     user_id: DataTypes.STRING,
-    email_id: DataTypes.STRING,
-    password_hash: DataTypes.STRING,
-    singn_in_type: DataTypes.STRING,
-    email_verfied_at: DataTypes.DATE,
-    deactivated_at: DataTypes.DATE,
-    delete_requested_at: DataTypes.DATE,
-    deleted_at: DataTypes.DATE,
+    token_hash: DataTypes.STRING,
+    type: DataTypes.STRING,
+    expires_at: DataTypes.DATE,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
   }, {

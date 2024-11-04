@@ -14,7 +14,7 @@ const isObject = val => typeof val === 'object' && val !== null;
  * @return {string}
  */
 const formatErr = err => {
-  return `${err} | ${err.stack.split('\n').slice(0, 2).join('\n')}`;
+  return `${err} | ${err.stack.split('\n').join('\n')}`;
 };
 
 /**
@@ -35,9 +35,19 @@ const genRandString = len => {
   return nanoid(len);
 };
 
+/**
+ *
+ * @param {string} val
+ * @return {string}
+ */
+const createHash = val => {
+  return crypto.createHash('sha256').update(val).digest('hex');
+};
+
 module.exports = {
   isObject,
   formatErr,
   genRandToken,
   genRandString,
+  createHash,
 };
