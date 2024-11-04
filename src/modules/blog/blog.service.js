@@ -2,12 +2,14 @@ const { createBlog, fetchAllBlog } = require("../../repositories/blogs");
 const { createBulkContents, fetchContents } = require("../../repositories/contents");
 
 async function createBlogService(user_id, data, logger) {
-  const { title } = data;
+  const { title, is_published = false, category } = data;
   let contents = data.contents || [];
 
   const blogResponse = await createBlog({
     title,
     user_id,
+    category,
+    is_published,
   });
   logger.info("Blog Created");
 
