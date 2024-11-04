@@ -11,6 +11,7 @@ const { Logger } = require('@logger');
 const sequalize = require('@models/db.connection');
 
 const authController = require('./modules/auth/auth.controller');
+const { verifyJwt } = require('./common/middlewares/verify-jwt');
 
 /**
  *
@@ -37,6 +38,7 @@ async function main() {
   app.use(express.json());
   app.use(ReqCtx);
   app.use(LoggerMiddleware);
+  app.use(verifyJwt);
 
   app.use('/auth', authController);
   app.use(ErrorHandler); // should be registered last

@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const { userRepository, userTokenRepository, userProfileRepository } = require('@repositories');
 const { HttpException } = require('@utils');
@@ -182,10 +183,39 @@ const resetPassword = async (ctx, resetPasswordbody, resetPasswordQuery) => {
   };
 };
 
+const signIn = async (ctx, signInData) => {
+  const logger = ctx.logger.child('AuthService | signIn');
+
+  const userData = await userRepository.getData(
+    { email_id: signInData.emailId, singn_in_type: CONTANTS.SIGN_IN_TYPE.EMAIL_PASSWORD },
+    ['user_id', 'password_hash'],
+  );
+  logger.info(`userData | ${JSON.stringify(userData)}`);
+
+  if (!userData) {
+    throw new HttpException(HttpStatus.BAD_REQUEST, 'Invalid emailId or password.');
+  }
+
+  if (!(await bcrypt.compare(signInData.password, userData.password_hash))) {
+    throw new HttpException(HttpStatus.BAD_REQUEST, 'Invalid emailId or password.');
+  }
+
+  const token = jwt.sign(
+    { userId: userData.user_id },
+    CONTANTS.JWT_SECRET_KEY,
+    { expiresIn: CONTANTS.JWT_LOGIN_TOKEN_EXP },
+  );
+
+  return {
+    token: token,
+  };
+};
+
 module.exports = {
   signUp,
   genVerifyEmailToken,
   verifyEmailToken,
   genResetPasswordToken,
   resetPassword,
+  signIn,
 };

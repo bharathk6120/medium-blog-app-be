@@ -10,4 +10,7 @@ module.exports = {
     VERIFY_EMAIL: 'verify_email',
     RESET_PASSWORD: 'reset_password',
   },
+  EXCLUDE_JWT_VERFICATION_FOR_ROUTES: [
+    'auth',
+  ],
 };

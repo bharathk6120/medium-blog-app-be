@@ -26,7 +26,7 @@ router.post('/verifyEmailToken', ReqValidator({ source: 'query', schema: verifyE
 
 router.post('/genResetPasswordToken', ReqValidator({ source: 'body', schema: genResetPasswordTokenSchema }), (req, res, next) => {
   authService.genResetPasswordToken(req.ctx, req.body)
-  .then(data =>res.status(HttpStatus.CREATED).json(data))
+  .then(data => res.status(HttpStatus.CREATED).json(data))
   .catch(err => next(err));
 });
 
@@ -35,9 +35,15 @@ router.post(
   ReqValidator({ source: 'body', schema: resetPasswordBodySchema }, { source: 'query', schema: resetPasswordQuerySchema }),
   (req, res, next) => {
     authService.resetPassword(req.ctx, req.body, req.query)
-  .then(data =>res.status(HttpStatus.CREATED).json(data))
+  .then(data => res.status(HttpStatus.CREATED).json(data))
   .catch(err => next(err));
   },
 );
+
+router.post('/signIn', ReqValidator({ source: 'body', schema: signInSchema }), (req, res, next) => {
+  authService.signIn(req.ctx, req.body)
+  .then(data => res.status(HttpStatus.CREATED).json(data))
+  .catch(err => next(err));
+});
 
 module.exports = router;
