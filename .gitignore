@@ -1,3 +1,5 @@
 node_modules
 pnpm-lock.yaml
 .env
+postgres_data
+pgdata
