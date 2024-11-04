@@ -1,7 +1,7 @@
-const { User } = require('@models');
+const { user } = require('@models');
 
 const getData = (condition, attributes) => {
-  return User.findOne({
+  return user.findOne({
     where: condition,
     attributes: attributes,
     raw: true,
@@ -9,11 +9,11 @@ const getData = (condition, attributes) => {
 };
 
 const createdData = data => {
-  return User.create(data);
+  return user.create(data);
 };
 
 const updatedData = (data, condition) => {
-  return User.update(data, {
+  return user.update(data, {
     where: condition,
   });
 };

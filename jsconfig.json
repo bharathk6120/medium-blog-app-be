@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@root/*": ["./*"],
-      "@models/*": ["./src/models/*"],
+      "@root": ["."],
+      "@models": ["./src/models"],
       "@repositories": ["./src/repositories"],
       "@utils": ["./src/common/utils"],
       "@constants": ["./src/common/constants"],
