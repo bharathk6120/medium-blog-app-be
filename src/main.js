@@ -11,7 +11,8 @@ const { Logger } = require("@logger");
 const sequalize = require("@models/db.connection");
 
 const authController = require("./modules/auth/auth.controller");
-const blogRouters = require("./modules/blog/blog.routes");
+const blogsRouters = require("./modules/blog/blog.routes");
+const contentsRouters = require("./modules/contents/contents.routes");
 
 /**
  *
@@ -40,7 +41,9 @@ async function main() {
   app.use(LoggerMiddleware);
 
   app.use("/auth", authController);
-  app.use("/blogs", blogRouters);
+  app.use("/blogs", blogsRouters);
+  app.use("/contents", contentsRouters);
+
   app.use(ErrorHandler); // should be registered last
 
   app.listen(NODE_PORT, () => {

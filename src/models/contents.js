@@ -21,6 +21,4 @@ const Contents = sequelize.define(
   }
 );
 
-Contents.sync();
-
 module.exports = Contents;

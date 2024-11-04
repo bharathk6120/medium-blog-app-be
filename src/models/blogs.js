@@ -21,6 +21,4 @@ const Blogs = sequelize.define(
   }
 );
 
-Blogs.sync();
-
 module.exports = Blogs;
