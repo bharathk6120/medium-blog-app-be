@@ -9,9 +9,22 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD} 
       POSTGRES_DB: ${DB_NAME}         
     ports:
-      - "5432:5432"                      
+      - "5432:5432"    
+    networks:
+      - pgnetwork                   
     volumes:
-      - pgdata:/var/lib/postgresql/data  
+      - pgdata:/var/lib/postgresql/data 
+
+  pgadmin:
+    image: dpage/pgadmin4:6.20
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    networks:
+      - pgnetwork 
 
   redis:
     image: redis:7.4.1  
@@ -26,3 +39,6 @@ volumes:
     driver: local
   redis_data:
     driver: local
+
+networks:
+  pgnetwork:
