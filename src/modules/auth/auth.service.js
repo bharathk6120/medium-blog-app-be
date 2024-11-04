@@ -1,14 +1,15 @@
-const { testRepository } = require('../../repositories');
-const { HttpException } = require('../../common/utils/http-exception');
+const { userRepository } = require('@repositories');
+const { HttpException } = require('@utils');
+const { HttpStatus } = require('@constants');
 
-const signIn = async ctx => {
-  const data = await testRepository.getData();
+const signIn = async (ctx, signInData) => {
+  const data = null && await userRepository.getData({ email: signInData.email }, ['user_id']);
   if (!data) {
-    throw new HttpException(400, 'No data found.');
+    throw new HttpException(HttpStatus.CONFLICT, 'User already eixts.');
   }
 
   return {
-    data: data,
+    data: [],
   };
 };
 

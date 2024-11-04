@@ -1,14 +1,14 @@
 require('dotenv').config();
+require('module-alias/register');
+
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const { ReqCtx } = require('./common/middlewares/req-ctx');
-const { LoggerMiddleware } = require('./common/middlewares/logger');
-const { ErrorHandler } = require('./common/middlewares/error-handler');
-const { Logger } = require('./common/logger/logger');
-const sequalize = require('./models/db.connection');
+const { ReqCtx, LoggerMiddleware, ErrorHandler } = require('@middlewares');
+const { Logger } = require('@logger');
+const sequalize = require('@models/db.connection');
 
 const authController = require('./modules/auth/auth.controller');
 
@@ -31,15 +31,14 @@ async function main() {
   });
 
   /* register middleware here */
-  app.use(cors({ origin: '* ' }));
+  app.use(cors({ origin: '*' }));
   app.use(helmet());
   app.use(limiter);
   app.use(express.json());
   app.use(ReqCtx);
   app.use(LoggerMiddleware);
 
-
-  app.use(authController);
+  app.use('/auth', authController);
   app.use(ErrorHandler); // should be registered last
 
   app.listen(NODE_PORT, () => {

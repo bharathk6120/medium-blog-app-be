@@ -1,5 +1,5 @@
-const testRepository = require('./test');
-
+const userRepository = require('./user');
 module.exports = {
-  testRepository,
+
+  userRepository,
 };
