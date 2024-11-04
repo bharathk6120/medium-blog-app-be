@@ -1,4 +1,4 @@
-const { formatErr } = require('../utils/common');
+const { formatErr } = require("../utils/common");
 
 /**
  *
@@ -12,8 +12,7 @@ const ErrorHandler = (err, req, res, next) => {
   if (!err?.httpStatusCode) {
     req.ctx.logger.error(`ErrorHandler | unhandled exception | ${formatErr(err)}`);
 
-    return res.status(500)
-    .json({ message: 'Something went wrong!' });
+    return res.status(500).json({ message: "Something went wrong!" });
   }
 
   res.status(err?.httpStatusCode).json({ message: err.message });
