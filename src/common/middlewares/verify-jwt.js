@@ -13,9 +13,7 @@ const verifyJwt = (req, res, next) => {
   const skipTokenVerification = CONTANTS.EXCLUDE_JWT_VERFICATION_FOR_ROUTES.find(item => req.path.includes(item));
   if (skipTokenVerification) return next();
 
-  const ctx = req.ctx;
   const [prefix, token] = (req.headers.authorization || '').split(' ');
-
   if (prefix !== 'Bearer') {
     return res.status(401).json({ message: 'unauthorized.' });
   }
@@ -26,6 +24,7 @@ const verifyJwt = (req, res, next) => {
       return res.status(401).json({ message: 'unauthorized.' });
     }
 
+    const ctx = req.ctx;
     ctx.user.userId = payload.userId;
     ctx.logger.updateContext(payload.userId);
   } catch (e) {
